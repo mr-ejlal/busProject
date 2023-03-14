@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../model/home_screen.dart';
 import '../utils/colors.dart';
 import 'package:get/get.dart';
+import 'package:get/get.dart';
 
 class HomeScreenView extends StatelessWidget {
   const HomeScreenView({Key? key}) : super(key: key);

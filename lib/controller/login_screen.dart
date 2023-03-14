@@ -29,7 +29,7 @@ class LoginScreenController extends GetxController {
     if (data.status == true) {
       (await preferences).setString(accessToken, data.access.toString());
       (await preferences).setString(urlId, data.urlId.toString());
-      Get.toNamed(homeScreenRoute);
+      Get.offAllNamed(homeScreenRoute);
     } else {
       Get.defaultDialog(middleText: "Login Failed");
     }

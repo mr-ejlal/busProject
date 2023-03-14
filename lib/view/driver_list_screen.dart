@@ -43,9 +43,14 @@ class Body extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.sp),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: CustomColor.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: CustomColor.white,
+                    ),
                   ),
                 ),
                 Text(

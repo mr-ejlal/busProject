@@ -81,6 +81,8 @@ Widget getBody() {
               controller: LoginScreenController.to.usernameController,
               decoration: InputDecoration(
                 border: InputBorder.none,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 label: Center(
                   child: Text(
@@ -117,6 +119,8 @@ Widget getBody() {
               obscureText: true,
               decoration: InputDecoration(
                 border: InputBorder.none,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 label: Center(
                   child: Text(

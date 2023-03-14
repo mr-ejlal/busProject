@@ -1,7 +1,7 @@
 import 'package:bus_project/controller/driver_add_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
 import '../utils/colors.dart';
 
 class DriverAddScreen extends StatelessWidget {
@@ -38,9 +38,14 @@ class Body extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.sp),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: CustomColor.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: CustomColor.white,
+                    ),
                   ),
                 ),
                 Text(
@@ -63,6 +68,8 @@ class Body extends StatelessWidget {
               controller: DriverAddController.to.driverNameController,
               decoration: InputDecoration(
                 border: InputBorder.none,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 label: Center(
                   child: Text(
@@ -95,6 +102,8 @@ class Body extends StatelessWidget {
               controller: DriverAddController.to.licenseController,
               decoration: InputDecoration(
                 border: InputBorder.none,
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 label: Center(
                   child: Text(
@@ -109,7 +118,7 @@ class Body extends StatelessWidget {
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter name';
+                  return 'Please enter license number';
                 }
                 return null;
               },

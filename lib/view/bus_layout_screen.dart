@@ -41,9 +41,14 @@ class Body extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.sp),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: CustomColor.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: CustomColor.white,
+                    ),
                   ),
                 ),
                 Text(
@@ -89,6 +94,9 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: 62.sp,
+          ),
           BusLayout(bus: BusLayoutController.to.item)
         ],
       ),
@@ -102,11 +110,19 @@ class BusLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: Get.width * .2),
+      padding: EdgeInsets.all(20.sp),
+      decoration: BoxDecoration(
+        border: Border.all(color: CustomColor.white2),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           DriverSeat(),
-          SeatLayOut(
-            bus: bus,
+          Container(
+            child: SeatLayOut(
+              bus: bus,
+            ),
           ),
         ],
       ),
@@ -119,7 +135,7 @@ class SeatLayOut extends StatelessWidget {
   SeatLayOut({required this.bus});
   @override
   Widget build(BuildContext context) {
-    switch (BusLayoutType.twoByTwo) {
+    switch (bus.busLayoutType ?? BusLayoutType.twoByTwo) {
       case BusLayoutType.twoByTwo:
         return TwoByTwoBusLayOut(
           bus: bus,
@@ -151,7 +167,7 @@ class TwoByTwoBusLayOut extends StatelessWidget {
                     mainAxisSpacing: 10.sp,
                     crossAxisSpacing: 10.sp,
                     crossAxisCount: 2,
-                    childAspectRatio: 4 / 3),
+                    childAspectRatio: 2),
                 children: e
                     .map((e) => Icon(
                           Icons.event_seat,
@@ -172,7 +188,6 @@ class OneByThreeBusLayOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * .8,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,10 +199,26 @@ class OneByThreeBusLayOut extends StatelessWidget {
               .toList()
               .map(
                 (e) => e.key == 0
-                    ? Column(
-                        children: e.value
-                            .map((e) => Icon(Icons.add_a_photo))
-                            .toList())
+                    ? Container(
+                        width: Get.width * .1,
+                        child: GridView(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 10.sp,
+                                  crossAxisSpacing: 10.sp,
+                                  crossAxisCount: 1,
+                                  childAspectRatio: 1.9),
+                          children: e.value
+                              .map((e) => Icon(
+                                    Icons.event_seat,
+                                    color: CustomColor.red,
+                                  ))
+                              .toList(),
+                        ),
+                      )
                     : Container(
                         width: Get.width * .2,
                         child: GridView(
@@ -199,7 +230,7 @@ class OneByThreeBusLayOut extends StatelessWidget {
                                   mainAxisSpacing: 10.sp,
                                   crossAxisSpacing: 10.sp,
                                   crossAxisCount: 3,
-                                  childAspectRatio: 3 / 2),
+                                  childAspectRatio: 1),
                           children: e.value
                               .map((e) => Icon(
                                     Icons.event_seat,
