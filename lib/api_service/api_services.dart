@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bus_project/api_service/url_file.dart';
 
 import '../main.dart';
+import '../model/driver_add_screen.dart';
 import '../model/driver_list_screen.dart';
 import '../model/login_screen.dart';
 import 'package:http/http.dart' as http;
@@ -50,6 +51,26 @@ class ApiService {
 
     if (response.statusCode == 200) {
       return driverListModelFromJson(response.body);
+    } else {
+      throw Exception(response.body);
+    }
+  }
+
+  static Future<DriverAddResponse> addDriver(
+      {required String driverName, required String licenseNo}) async {
+    http.Response response =
+        await http.post(Uri.parse(driverListUrl + await getUrl() + "/"),
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+              "Authorization": await getToken()
+            },
+            body: json.encode({
+              "name": driverName,
+              "license_no": licenseNo,
+            }));
+
+    if (response.statusCode == 200) {
+      return driverAddResponseFromJson(response.body);
     } else {
       throw Exception(response.body);
     }

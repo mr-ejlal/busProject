@@ -122,7 +122,7 @@ class DriverListWidget extends StatelessWidget {
         border: Border.all(color: CustomColor.black),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // SizedBox(
           //   width: 10.sp,
@@ -135,21 +135,20 @@ class DriverListWidget extends StatelessWidget {
               height: 74.sp,
             ),
           ),
-          SizedBox(
-            width: 15.sp,
-          ),
+          // SizedBox(
+          //   width: 15.sp,
+          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [Text(item.name ?? ""), Text(item.licenseNo ?? '')],
           ),
-          SizedBox(
-            width: 70.sp,
-          ),
+          SizedBox(),
           GestureDetector(
             onTap: () {
               DriverListController.to.deleteDriver(driver: item);
             },
             child: Container(
+              margin: EdgeInsets.only(right: 10.sp),
               width: 70.sp,
               height: 30.sp,
               decoration: BoxDecoration(
@@ -165,6 +164,9 @@ class DriverListWidget extends StatelessWidget {
               ),
             ),
           ),
+          // SizedBox(
+          //   width: 5.sp,
+          // )
         ],
       ),
     );

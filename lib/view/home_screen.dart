@@ -213,16 +213,21 @@ class BusListWidget extends StatelessWidget {
           SizedBox(
             width: 20.sp,
           ),
-          Container(
-            width: 70.sp,
-            height: 30.sp,
-            decoration: BoxDecoration(
-              color: CustomColor.red,
-            ),
-            child: Center(
-              child: Text(
-                "Manage",
-                style: TextStyle(color: CustomColor.white),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(busLayoutScreenRoute, arguments: item);
+            },
+            child: Container(
+              width: 70.sp,
+              height: 30.sp,
+              decoration: BoxDecoration(
+                color: CustomColor.red,
+              ),
+              child: Center(
+                child: Text(
+                  "Manage",
+                  style: TextStyle(color: CustomColor.white),
+                ),
               ),
             ),
           ),
