@@ -1,4 +1,6 @@
+import 'package:bus_project/controller/driver_list_screen.dart';
 import 'package:bus_project/routes/routes.dart';
+import 'package:bus_project/view/driver_list_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../controller/home_screen.dart';
@@ -22,5 +24,9 @@ abstract class AppPages {
         name: homeScreenRoute,
         page: () => const HomeScreenView(),
         binding: HomeScreenControllerBinding()),
+    GetPage(
+        name: driverListScreenRoute,
+        page: () => const DriverListScreen(),
+        binding: DriverListControllerBinding()),
   ];
 }
