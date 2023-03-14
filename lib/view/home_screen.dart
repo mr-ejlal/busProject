@@ -144,6 +144,21 @@ Widget getBody() {
           ],
         ),
         SizedBox(
+          height: 22.sp,
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 50.sp),
+              child: Text(
+                HomeScreenController.to.busList.length.toString() +
+                    " buses found",
+                style: TextStyle(color: CustomColor.black),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
           height: 62.sp,
         ),
         Column(

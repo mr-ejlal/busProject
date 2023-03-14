@@ -62,3 +62,33 @@ class DriverList {
         "license_no": licenseNo,
       };
 }
+// To parse this JSON data, do
+//
+//     final driverDeleteResponse = driverDeleteResponseFromJson(jsonString);
+
+DriverDeleteResponse driverDeleteResponseFromJson(String str) =>
+    DriverDeleteResponse.fromJson(json.decode(str));
+
+String driverDeleteResponseToJson(DriverDeleteResponse data) =>
+    json.encode(data.toJson());
+
+class DriverDeleteResponse {
+  DriverDeleteResponse({
+    this.status,
+    this.message,
+  });
+
+  bool? status;
+  String? message;
+
+  factory DriverDeleteResponse.fromJson(Map<String, dynamic> json) =>
+      DriverDeleteResponse(
+        status: json["status"],
+        message: json["message"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "message": message,
+      };
+}

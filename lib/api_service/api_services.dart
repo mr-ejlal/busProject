@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bus_project/api_service/url_file.dart';
 
 import '../main.dart';
@@ -48,6 +50,25 @@ class ApiService {
 
     if (response.statusCode == 200) {
       return driverListModelFromJson(response.body);
+    } else {
+      throw Exception(response.body);
+    }
+  }
+
+  static Future<DriverDeleteResponse> deleteDriver(
+      {required int driverId}) async {
+    http.Response response =
+        await http.delete(Uri.parse(driverListUrl + await getUrl() + "/"),
+            headers: {
+              'Content-Type': 'application/json; charset=UTF-8',
+              "Authorization": await getToken()
+            },
+            body: json.encode({"driver_id": driverId}));
+
+    // });
+
+    if (response.statusCode == 200) {
+      return driverDeleteResponseFromJson(response.body);
     } else {
       throw Exception(response.body);
     }

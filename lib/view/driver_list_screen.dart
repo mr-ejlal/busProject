@@ -1,7 +1,9 @@
+import 'package:bus_project/controller/driver_add_screen.dart';
 import 'package:bus_project/controller/driver_list_screen.dart';
 import 'package:bus_project/model/driver_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../routes/routes.dart';
 import '../utils/colors.dart';
 import '../utils/images.dart';
 import 'package:get/get.dart';
@@ -31,6 +33,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             height: 119.sp,
@@ -54,6 +57,22 @@ class Body extends StatelessWidget {
             ),
           ),
           SizedBox(
+            height: 20.sp,
+          ),
+          GetX<DriverListController>(builder: (c) {
+            return Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 50.sp),
+                  child: Text(
+                    c.driverData.length.toString() + " buses found",
+                    style: TextStyle(color: CustomColor.black),
+                  ),
+                ),
+              ],
+            );
+          }),
+          SizedBox(
             height: 57.sp,
           ),
           GetX<DriverListController>(builder: (controller) {
@@ -63,6 +82,24 @@ class Body extends StatelessWidget {
                   .toList(),
             );
           }),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(driverAddScreenRoute);
+            },
+            child: Container(
+              width: 316.sp,
+              height: 58.sp,
+              decoration: BoxDecoration(
+                  color: CustomColor.red,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                child: Text(
+                  "Add Driver",
+                  style: TextStyle(color: CustomColor.white),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -94,7 +131,7 @@ class DriverListWidget extends StatelessWidget {
             width: 80.sp,
             color: CustomColor.white2,
             child: Image.asset(
-              ksrtcImage,
+              driversImage,
               height: 74.sp,
             ),
           ),
@@ -108,17 +145,22 @@ class DriverListWidget extends StatelessWidget {
           SizedBox(
             width: 70.sp,
           ),
-          Container(
-            width: 70.sp,
-            height: 30.sp,
-            decoration: BoxDecoration(
-              color: CustomColor.red,
-            ),
-            child: Center(
-              child: Text(
-                "Delete",
-                style: TextStyle(
-                  color: CustomColor.white,
+          GestureDetector(
+            onTap: () {
+              DriverListController.to.deleteDriver(driver: item);
+            },
+            child: Container(
+              width: 70.sp,
+              height: 30.sp,
+              decoration: BoxDecoration(
+                color: CustomColor.red,
+              ),
+              child: Center(
+                child: Text(
+                  "Delete",
+                  style: TextStyle(
+                    color: CustomColor.white,
+                  ),
                 ),
               ),
             ),
